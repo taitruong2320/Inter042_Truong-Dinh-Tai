@@ -14,8 +14,8 @@ CREATE TABLE `dichvu` (
   `IdLoaiDichVu` int NOT NULL,
   `TrangThai` varchar(45) ,
   PRIMARY KEY (`IdDichVu`),
-  KEY `IdKieuThue_idx` (`IdKieuThue`),
-  KEY `IdLoaiDichVu_idx` (`IdLoaiDichVu`),
+  KEY `IdKieuThue` (`IdKieuThue`),
+  KEY `IdLoaiDichVu` (`IdLoaiDichVu`),
   CONSTRAINT `IdKieuThue` FOREIGN KEY (`IdKieuThue`) REFERENCES `kieuthue` (`IdKieuThue`),
   CONSTRAINT `IdLoaiDichVu` FOREIGN KEY (`IdLoaiDichVu`) REFERENCES `loaidichvu` (`IdLoaiDichVu`)
 );
@@ -37,9 +37,9 @@ CREATE TABLE `hopdong` (
   `TienDatCoc` int NOT NULL,
   `TongTien` int NOT NULL,
   PRIMARY KEY (`IdHopDong`),
-  KEY `IdNhanVien_idx` (`IdNhanVien`),
-  KEY `IdKhachHang_idx` (`IdKhachHang`),
-  KEY `IdDichVu_idx` (`IdDichVu`),
+  KEY `IdNhanVien` (`IdNhanVien`),
+  KEY `IdKhachHang` (`IdKhachHang`),
+  KEY `IdDichVu` (`IdDichVu`),
   CONSTRAINT `IdDichVu` FOREIGN KEY (`IdDichVu`) REFERENCES `dichvu` (`IdDichVu`),
   CONSTRAINT `IdKhachHang` FOREIGN KEY (`IdKhachHang`) REFERENCES `khachhang` (`IdKhachHang`),
   CONSTRAINT `IdNhanVien` FOREIGN KEY (`IdNhanVien`) REFERENCES `nhanvien` (`IdNhanVien`)
@@ -50,8 +50,8 @@ CREATE TABLE `hopdongchitiet` (
   `IdDichVuDiKem` int NOT NULL,
   `SoLuong` int NOT NULL,
   PRIMARY KEY (`IdHopDongChiTiet`),
-  KEY `IdDichVuDiKem_idx` (`IdDichVuDiKem`),
-  KEY `IdHopDong_idx` (`IdHopDong`),
+  KEY `IdDichVuDiKem` (`IdDichVuDiKem`),
+  KEY `IdHopDong` (`IdHopDong`),
   CONSTRAINT `IdDichVuDiKem` FOREIGN KEY (`IdDichVuDiKem`) REFERENCES `dichvudikem` (`IdDichVuDiKem`),
   CONSTRAINT `IdHopDong` FOREIGN KEY (`IdHopDong`) REFERENCES `hopdong` (`IdHopDong`)
 );
@@ -65,7 +65,7 @@ CREATE TABLE `khachhang` (
   `Email` varchar(45)  NOT NULL,
   `DiaChi` varchar(45)  NOT NULL,
   PRIMARY KEY (`IdKhachHang`),
-  KEY `IdLoaiKhach_idx` (`IdLoaiKhach`),
+  KEY `IdLoaiKhach_` (`IdLoaiKhach`),
   CONSTRAINT `IdLoaiKhach` FOREIGN KEY (`IdLoaiKhach`) REFERENCES `loaikhach` (`IdLoaiKhach`)
 );
 CREATE TABLE `kieuthue` (
@@ -97,9 +97,9 @@ CREATE TABLE `nhanvien` (
   `Email` varchar(45) NOT NULL,
   `DiaChi` varchar(45) NOT NULL,
   PRIMARY KEY (`IdNhanVien`),
-  KEY `IdViTri_idx` (`IdViTri`),
-  KEY `IdBoPhan_idx` (`IdBoPhan`),
-  KEY `IdTrinhDo_idx` (`IdTrinhDo`),
+  KEY `IdViTri` (`IdViTri`),
+  KEY `IdBoPhan` (`IdBoPhan`),
+  KEY `IdTrinhDo` (`IdTrinhDo`),
   CONSTRAINT `IdBoPhan` FOREIGN KEY (`IdBoPhan`) REFERENCES `bophan` (`IdBoPhan`),
   CONSTRAINT `IdTrinhDo` FOREIGN KEY (`IdTrinhDo`) REFERENCES `trinhdo` (`IdTrinhDo`),
   CONSTRAINT `IdViTri` FOREIGN KEY (`IdViTri`) REFERENCES `vitri` (`Idvitri`)
