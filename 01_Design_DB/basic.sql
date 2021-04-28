@@ -6,7 +6,7 @@ FROM khachhang
 where  DiaChi = 'Đà nẵng' or DiaChi = 'Quảng trị' and round(DATEDIFF(CURDATE(), khachhang.NgaySinh)/365,0)  between 18 and 50 
 ;
 4.
-SELECT khachhang.HoTen,loaikhach.TenLoaiKhach,hopdongchitiet.SoLuong as solandat
+SELECT khachhang.HoTen,loaikhach.TenLoaiKhach,count(hopdongchitiet.SoLuong) as solandat
 FROM khachhang
 Inner join  loaikhach
 on khachhang.IdLoaiKhach = loaikhach.IdLoaiKhach
@@ -15,9 +15,25 @@ on khachhang.IdKhachHang = hopdong.IdKhachHang
 Inner join  hopdongchitiet
 on hopdongchitiet.IdHopDong = hopdong.IdHopDong 
 where TenLoaiKhach = 'Diamond'
-group by Hoten,TenLoaiKhach
 order by SoLuong asc
 ;
 5.
+SELECT khachhang.IdKhachHang,khachhang.HoTen,loaikhach.TenLoaiKhach,hopdong.IdHopDong,dichvu.IdDichVu,hopdong.NgayLamHopDong,hopdong.NgayKetThuc, ChiPhiThue + (SoLuong*Gia) as TongTien
+FROM khachhang
+Inner join  loaikhach
+on khachhang.IdLoaiKhach = loaikhach.IdLoaiKhach
+
+Inner join  hopdong
+on khachhang.IdKhachHang = hopdong.IdKhachHang
+
+Inner join  hopdongchitiet
+on hopdongchitiet.IdHopDong = hopdong.IdHopDong 
+
+Inner join  dichvu
+on dichvu.IdDichVu = hopdong.IdDichVu
+
+Inner join dichvudikem
+on hopdongchitiet.IdDichVuDiKem = dichvudikem.IdDichVuDiKem
+;
 
 
